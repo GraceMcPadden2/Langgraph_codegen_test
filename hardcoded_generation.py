@@ -33,9 +33,25 @@ def convert_sectioned_data(file_path: str) -> Dict[str, List[str]]:
     return dict(section_to_fields)
 
 def to_field_name(name: str) -> str:
+    """
+    Convert a field name to a valid Python variable name by lowercasing and
+    replacing spaces, slashes, and dashes with underscores.
+    """
+    
     return name.lower().replace(" ", "_").replace("/", "_").replace("-", "_")
 
 def generate_dataclass(section: str, fields: list[str]) -> str:
+    """
+    Generate a dataclass definition string for a given section and its fields.
+
+    Args:
+        section (str): The name of the section.
+        fields (list[str]): A list of field names for the section.
+
+    Returns:
+        str: A string representing the dataclass definition.
+    """
+
     class_name = section.title()
     lines = [f"@dataclass", f"class {class_name}:"]
     for field_name in fields:
