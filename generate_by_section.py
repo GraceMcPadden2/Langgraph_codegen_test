@@ -19,16 +19,37 @@ class AgentState(TypedDict):
 
 # ---------- 2. Tool ----------------------------------------------------------
 @tool
-def convert_data(file_path: str) -> pd.DataFrame:
-    """takes in a file path to an excel file, returns a pandas data frame
+def convert_data(file_path: str) -> Dict[str, List[str]]:
+    """takes in a file path to an excel file, returns a dictionary mapping section codes to fields
 
     Args:
         file_path (str): path to local file containing spreasheet
 
+    Raises:
+        ValueError: section name missing on row
+
     Returns:
-        pd.DataFrame: pandas data frame
+        Dict[str, List[str]]: dictionary mapping section codes to fields
     """
-    return pd.read_excel(file_path)
+    df = pd.read_excel(file_path, header=None)
+
+    section_to_fields = defaultdict(list)
+    current_section = None
+
+    for idx, row in df.iterrows():
+        first_cell = str(row[0]).strip() if pd.notna(row[0]) else ""
+
+        if first_cell == "Section code":
+            # Grab section code from second cell
+            current_section = str(row[1]).strip() if pd.notna(row[1]) else None
+            if current_section is None:
+                raise ValueError(f"Missing section name on row {idx}")
+        elif current_section and pd.notna(row[0]):
+            section_to_fields[current_section].append(str(row[0]).strip())
+
+    return dict(section_to_fields)
+
+
 
 @tool
 def save_doc(script):
@@ -57,8 +78,8 @@ def agent_node(state: AgentState) -> AgentState:
 You are a devloper writing classes in Python. You will be given a file path to an excel file containing a spreadsheet. Always prioritze best practices and readability.
 
     - When the user provides a file path, Begin by writing "from dataclasses import dataclass" to file using save_doc tool.
-    - You will call convert_data tool with the file path provided by the user. This tool will read the excel file and return a df of the categories.
-    - You will then take the df returned by the tool, and generate Python code that defines a class for each category. Each section should begin with a new line and use @dataclass 
+    - You will call convert_data tool with the file path provided by the user. This tool will read the excel file and return a dictionary mapping section codes to fields.
+    - You will then take the dictionary returned by the tool, and generate Python code that defines a class for each section code in the dictionary. Each section should begin with a new line and use @dataclass. Do not generate an Init function.
     - Each class should have a constructor that initializes the fields corresponding to that section code.
     - You will generate each section class one at a time, calling save_doc tool to save progress
     - You will finish my generating a "container" class that encapsulates all generated classes.
