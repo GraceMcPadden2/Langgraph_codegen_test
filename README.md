@@ -19,3 +19,15 @@ Python classes generated in segments use dataclass to allow init function to be 
 Demo for generate by section (python): https://www.youtube.com/watch?v=E_0xtVKohgU
 
 Demo for generate one pass (python): https://youtu.be/6uYgT_IFcJ0
+
+
+Example Generations:
+
+by_segment_script.py
+
+one_pass_script.py
+
+by_segment_script.java
+
+one_pass_script.java
+
