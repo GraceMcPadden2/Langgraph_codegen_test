@@ -12,7 +12,7 @@ Book3.xlsx contains simulated form of ~100 lines.
 Book4.xlsx contains simulated form of ~50 lines.
 
 One shot generation for Python classes works reliabily up to ~50 lines, One shot generation for Java classes works up to ~20 lines.
-Segmenting classes before generation allows classes to be reliabily generated for 1000+ lines.
+Segmenting classes before generation allows classes to be reliabily generated for 500+ lines.
 
 Python classes generated in segments use dataclass to allow init function to be generated automatically, reducing code complexity and increasing ability for one shot generation. Java class generation includes generation of getters and setters.
 
