@@ -69,7 +69,7 @@ tools = [convert_data, save_doc]
 
 
 # ---------- 3. LLM bound to tools -------------------------------------------
-llm = ChatOpenAI(model="gpt-4o").bind_tools(tools)
+llm = ChatOpenAI(model="gpt-4o", temperature = 0).bind_tools(tools)
 tool_node = ToolNode(tools)
 
 # ---------- 4. Agent (reasoning) node ---------------------------------------

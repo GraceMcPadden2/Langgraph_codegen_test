@@ -1,0 +1,122 @@
+from dataclasses import dataclass
+@dataclass
+class HDR:
+    customer_count: str
+    file_name: str
+    date_created: str
+    customer_name: str
+@dataclass
+class PII:
+    customer_number: str
+    transaction_code: str
+    employee_ssn: str
+    employee_id: str
+    member_ssn_member_id: str
+    relationship_code: str
+    last_name: str
+    first_name: str
+@dataclass
+class BNK:
+    bank_routing_number: str
+    account_number: str
+    account_type: str
+@dataclass
+class ADR:
+    company_name: str
+    claim_amount: str
+    position: str
+    phone_number: str
+    coverage_type: str
+    street_address: str
+    provider_name: str
+    start_date: str
+    zip_code: str
+    end_date: str
+    email: str
+    claim_id: str
+    state: str
+    city: str
+    insurance_id: str
+    claim_status: str
+@dataclass
+class COM:
+    zip_code: str
+    email: str
+    insurance_id: str
+    city: str
+    claim_status: str
+    provider_name: str
+    end_date: str
+    claim_amount: str
+    state: str
+    start_date: str
+    company_name: str
+    position: str
+    phone_number: str
+    street_address: str
+    claim_id: str
+    coverage_type: str
+@dataclass
+class INS:
+    claim_amount: str
+    provider_name: str
+    company_name: str
+    start_date: str
+    coverage_type: str
+    claim_status: str
+    email: str
+    position: str
+    insurance_id: str
+    street_address: str
+    state: str
+    zip_code: str
+    claim_id: str
+    phone_number: str
+    city: str
+    end_date: str
+@dataclass
+class EMP:
+    claim_status: str
+    company_name: str
+    position: str
+    end_date: str
+    state: str
+    zip_code: str
+    phone_number: str
+    provider_name: str
+    start_date: str
+    claim_id: str
+    email: str
+    city: str
+    insurance_id: str
+    claim_amount: str
+    street_address: str
+    coverage_type: str
+@dataclass
+class CLA:
+    state: str
+    zip_code: str
+    street_address: str
+    coverage_type: str
+    insurance_id: str
+    claim_amount: str
+    position: str
+    company_name: str
+    start_date: str
+    claim_id: str
+    email: str
+    phone_number: str
+    city: str
+    provider_name: str
+    end_date: str
+    claim_status: str
+@dataclass
+class Container:
+    hdr: HDR
+    pii: PII
+    bnk: BNK
+    adr: ADR
+    com: COM
+    ins: INS
+    emp: EMP
+    cla: CLA

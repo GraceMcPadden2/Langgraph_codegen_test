@@ -48,7 +48,7 @@ tools = [convert_data, save_doc]
 
 
 # ---------- 3. LLM bound to tools -------------------------------------------
-llm = ChatOpenAI(model="gpt-4o").bind_tools(tools)
+llm = ChatOpenAI(model="gpt-4o", temperature=0).bind_tools(tools)
 tool_node = ToolNode(tools)
 
 # ---------- 4. Agent (reasoning) node ---------------------------------------
@@ -59,6 +59,7 @@ You are a devloper writing classes in Python. You will be given a file path to a
     - When the user provides a file path, You will call convert_data tool with the file path provided by the user. This tool will read the excel file and return a df of the categories.
     - You will then take the df returned by the tool, and generate Python code that defines a class for each category. Put all sections in one class.
     - Include every section in the df, do not exclude any.
+        
                                
 You will not run the code, just generate it and save it to a file.
                         
