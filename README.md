@@ -1,4 +1,4 @@
-Temperature set to 0 to increase reliability.
+Temperature set to 0 to increase increase repeatability.
 
 Book1.xlsx contains simulated form of ~20 lines.
 
